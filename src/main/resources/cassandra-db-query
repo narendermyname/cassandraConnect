@@ -1,0 +1,26 @@
+create keyspace KunderaExamples;
+use KunderaExamples;
+create column family SIMPLE_COMMENT with comparator=UTF8Type and default_validation_class=UTF8Type and key_validation_class=UTF8Type and 
+column_metadata=[
+{column_name: USER_NAME, validation_class:UTF8Type, index_type: KEYS},
+{column_name: COMMENT_TEXT, validation_class:UTF8Type, index_type: KEYS}
+];
+
+create keyspace nstanwar;
+use nstanwar;
+ create column family User with comparator = UTF8Type;
+ --ALTER
+ update column family User with  column_metadata = [
+ {column_name: first, validation_class: UTF8Type}, 
+ {column_name: last, validation_class: UTF8Type},
+ {column_name: age, validation_class: UTF8Type}
+  ];
+  --INSERT
+  set User['jsmith']['first'] = 'John';
+  set User['jsmith']['last'] = 'Smith';
+  set User['jsmith']['age'] = '38';
+  
+  --GET
+  get User['jsmith'];
+  get User where age = '12';
+  list User;
